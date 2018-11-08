@@ -11,6 +11,10 @@
 		9488E9832192406B007E52DA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9488E9822192406B007E52DA /* ViewController.swift */; };
 		9488E9852192406C007E52DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9488E9842192406C007E52DA /* Assets.xcassets */; };
 		9488E9882192406C007E52DA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9488E9862192406C007E52DA /* Main.storyboard */; };
+		9488E99221924199007E52DA /* CollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9488E99021924199007E52DA /* CollectionViewItem.swift */; };
+		9488E99321924199007E52DA /* CollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9488E99121924199007E52DA /* CollectionViewItem.xib */; };
+		94EC0C852194C72F00360747 /* defaultAlbum.png in Resources */ = {isa = PBXBuildFile; fileRef = 94EC0C842194C72F00360747 /* defaultAlbum.png */; };
+		94EC0C872194C73C00360747 /* album.png in Resources */ = {isa = PBXBuildFile; fileRef = 94EC0C862194C73C00360747 /* album.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +25,10 @@
 		9488E9872192406C007E52DA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9488E9892192406C007E52DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9488E98A2192406C007E52DA /* MacScrobbler.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MacScrobbler.entitlements; sourceTree = "<group>"; };
+		9488E99021924199007E52DA /* CollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewItem.swift; sourceTree = "<group>"; };
+		9488E99121924199007E52DA /* CollectionViewItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionViewItem.xib; sourceTree = "<group>"; };
+		94EC0C842194C72F00360747 /* defaultAlbum.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = defaultAlbum.png; sourceTree = "<group>"; };
+		94EC0C862194C73C00360747 /* album.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = album.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,14 +61,26 @@
 		9488E97F2192406B007E52DA /* MacScrobbler */ = {
 			isa = PBXGroup;
 			children = (
+				94EC0C832194C71A00360747 /* Images */,
 				9488E9802192406B007E52DA /* AppDelegate.swift */,
 				9488E9822192406B007E52DA /* ViewController.swift */,
+				9488E99021924199007E52DA /* CollectionViewItem.swift */,
+				9488E99121924199007E52DA /* CollectionViewItem.xib */,
 				9488E9842192406C007E52DA /* Assets.xcassets */,
 				9488E9862192406C007E52DA /* Main.storyboard */,
 				9488E9892192406C007E52DA /* Info.plist */,
 				9488E98A2192406C007E52DA /* MacScrobbler.entitlements */,
 			);
 			path = MacScrobbler;
+			sourceTree = "<group>";
+		};
+		94EC0C832194C71A00360747 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				94EC0C862194C73C00360747 /* album.png */,
+				94EC0C842194C72F00360747 /* defaultAlbum.png */,
+			);
+			path = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -122,7 +142,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				9488E9852192406C007E52DA /* Assets.xcassets in Resources */,
+				94EC0C852194C72F00360747 /* defaultAlbum.png in Resources */,
 				9488E9882192406C007E52DA /* Main.storyboard in Resources */,
+				9488E99321924199007E52DA /* CollectionViewItem.xib in Resources */,
+				94EC0C872194C73C00360747 /* album.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,6 +158,7 @@
 			files = (
 				9488E9832192406B007E52DA /* ViewController.swift in Sources */,
 				9488E9812192406B007E52DA /* AppDelegate.swift in Sources */,
+				9488E99221924199007E52DA /* CollectionViewItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
