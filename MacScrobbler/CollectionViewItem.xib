@@ -15,11 +15,24 @@
         <customView wantsLayer="YES" id="Hz6-mo-xeY">
             <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="umT-NK-y2T">
+                    <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="Dw4-qw-YkE"/>
+                </imageView>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="umT-NK-y2T" secondAttribute="trailing" id="14a-Ic-I0D"/>
+                <constraint firstAttribute="bottom" secondItem="umT-NK-y2T" secondAttribute="bottom" id="DrP-vt-vvh"/>
+                <constraint firstItem="umT-NK-y2T" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="Taj-5y-SQy"/>
+                <constraint firstItem="umT-NK-y2T" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="ibW-jw-gR1"/>
+            </constraints>
         </customView>
-        <customObject id="Ll9-qQ-TJ0" customClass="CollectionViewItem" customModule="MacScrobbler" customModuleProvider="target">
+        <collectionViewItem id="NNd-Qs-Lp5" customClass="CollectionViewItem" customModule="MacScrobbler" customModuleProvider="target">
             <connections>
-                <outlet property="view" destination="Hz6-mo-xeY" id="djG-WT-ejh"/>
+                <outlet property="imageView" destination="umT-NK-y2T" id="QW6-0r-7sb"/>
+                <outlet property="view" destination="Hz6-mo-xeY" id="SbL-Kb-j60"/>
             </connections>
-        </customObject>
+        </collectionViewItem>
     </objects>
 </document>

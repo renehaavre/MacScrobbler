@@ -40,15 +40,18 @@ class ViewController: NSViewController {
 
 }
 
-extension ViewController: NSCollectionViewDataSource, NSCollectionViewDelegate {
+extension ViewController: NSCollectionViewDataSource {
     func collectionView(_ collectionView: NSCollectionView, numberOfItemsInSection section: Int) -> Int {
         return 10
     }
     
     func collectionView(_ collectionView: NSCollectionView, itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
-        let item = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "CollectionViewItem"), for: indexPath) as! CollectionViewItem
-        item.imageFile = NSImage(named: "album.png")
         
+        let item = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "CollectionViewItem"), for: indexPath)
+        guard let collectionViewItem = item as? CollectionViewItem else {return item}
+        
+        let imageFile = NSImage(named: "album.png")
+        collectionViewItem.imageFile = imageFile
         return item
     }
     
