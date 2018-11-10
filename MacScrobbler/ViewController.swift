@@ -11,6 +11,7 @@ import Cocoa
 class ViewController: NSViewController {
 
     let apiKey = "REPLACE_ME"
+    let username = "renehaavre"
     
     @IBOutlet weak var collectionView: NSCollectionView!
     
@@ -20,6 +21,7 @@ class ViewController: NSViewController {
         collectionView.register(NSNib(nibNamed: "CollectionViewItem", bundle: nil)!, forItemWithIdentifier: NSUserInterfaceItemIdentifier(rawValue: "CollectionViewItem"))
         
         configureCollectionView()
+        getJSON()
     }
     
     fileprivate func configureCollectionView() {
@@ -31,10 +33,22 @@ class ViewController: NSViewController {
         view.wantsLayer = true
     }
 
-    override var representedObject: Any? {
-        didSet {
-        // Update the view, if already loaded.
-        }
+    func getJSON() {
+        
+        guard let url = URL(string: "http://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user=" + username + "&api_key=" + apiKey + "=json") else { return }
+        
+        let session = URLSession.shared
+        session.dataTask(with: url) { (data, response, error) in
+            if let data = data {
+                print(data)
+            }
+            
+            if let response = response {
+                print(response.debugDescription)
+            }
+        }.resume()
+        
+        
     }
 
 
