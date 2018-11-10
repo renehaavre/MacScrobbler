@@ -35,10 +35,11 @@ class ViewController: NSViewController {
 
     func getJSON() {
         
-        guard let url = URL(string: "http://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user=" + username + "&api_key=" + apiKey + "=json") else { return }
-        
+        guard let url = URL(string: "http://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user=" + username + "&api_key=" + apiKey + "&format=json") else { return }
+        print(url)
         let session = URLSession.shared
         session.dataTask(with: url) { (data, response, error) in
+            print(error)
             if let data = data {
                 print(data)
             }
