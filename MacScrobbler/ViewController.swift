@@ -72,6 +72,9 @@ class ViewController: NSViewController {
                 
             }
             
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
         }.resume()
         
     }
