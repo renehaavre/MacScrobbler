@@ -8,10 +8,20 @@
 
 import Cocoa
 
+struct Album {
+    let name: String
+    let artist: String
+    let coverURL: String
+    let playCount: Int
+}
+
 class ViewController: NSViewController {
 
     let apiKey = "REPLACE_ME"
     let username = "renehaavre"
+    let albumLimit = 50
+    
+    var albumsArray = [Album]()
     
     @IBOutlet weak var collectionView: NSCollectionView!
     
@@ -35,18 +45,28 @@ class ViewController: NSViewController {
 
     func getJSON() {
         
-        guard let url = URL(string: "http://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user=" + username + "&api_key=" + apiKey + "&format=json") else { return }
+        guard let url = URL(string: "http://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user=" + username + "&api_key=" + apiKey + "&format=json&limit=" + String(albumLimit)) else { return }
         print(url)
         let session = URLSession.shared
         session.dataTask(with: url) { (data, response, error) in
-            print(error)
             if let data = data {
-                print(data)
+
+                
+                guard let json = try? JSON(data: data) else { return }
+
+                for i in 0..<self.albumLimit {
+                    let JSONAlbumRef = json["topalbums"]["album"][i]
+//                    print(json["topalbums"]["album"][i]["name"])
+//                    print(json["topalbums"]["album"][i]["image"][3]["#text"])
+//                    print(json["topalbums"]["album"][i]["playcount"])
+                    
+                    
+                    let album = Album(name: JSONAlbumRef["name"].stringValue, artist: JSONAlbumRef["artist"]["name"].stringValue, coverURL: JSONAlbumRef["image"][3]["#text"].stringValue, playCount: JSONAlbumRef["playcount"].intValue)
+                    self.albumsArray.append(album)
+                }
+                
             }
             
-            if let response = response {
-                print(response.debugDescription)
-            }
         }.resume()
         
         
@@ -57,7 +77,7 @@ class ViewController: NSViewController {
 
 extension ViewController: NSCollectionViewDataSource {
     func collectionView(_ collectionView: NSCollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return albumLimit
     }
     
     func collectionView(_ collectionView: NSCollectionView, itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
