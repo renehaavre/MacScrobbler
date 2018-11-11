@@ -18,18 +18,25 @@ struct Album {
 class ViewController: NSViewController {
 
     let apiKey = "REPLACE_ME"
-    let username = "renehaavre"
-    let albumLimit = 50
+    var username = "renehaavre"
+    var albumLimit = 50
     
     var albumsArray = [Album]()
     
     @IBOutlet weak var collectionView: NSCollectionView!
+    @IBOutlet var usernameTextField: NSTextField!
+    @IBOutlet var nrOfAlbumsTextField: NSTextField!
     
     @IBAction func reloadAction(_ sender: NSButton) {
-        collectionView.reloadData()
+        
+        username = usernameTextField.stringValue
+        albumLimit = Int(nrOfAlbumsTextField.stringValue) ?? 50
+        albumsArray.removeAll()
+        getJSON()
     }
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
 
         collectionView.register(NSNib(nibNamed: "CollectionViewItem", bundle: nil)!, forItemWithIdentifier: NSUserInterfaceItemIdentifier(rawValue: "CollectionViewItem"))
@@ -57,10 +64,11 @@ class ViewController: NSViewController {
 
                 
                 guard let json = try? JSON(data: data) else { return }
-
+                print("DEBUG: We have the JSON, building albumsArray with \(self.albumLimit) items.")
+                
                 for i in 0..<self.albumLimit {
                     let JSONAlbumRef = json["topalbums"]["album"][i]
-
+                    
 //                    print(json["topalbums"]["album"][i]["name"])
 //                    print(json["topalbums"]["album"][i]["image"][3]["#text"])
 //                    print(json["topalbums"]["album"][i]["playcount"])
@@ -74,6 +82,7 @@ class ViewController: NSViewController {
             
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
+                print("DEBUG: Finished building albumsArray.")
             }
         }.resume()
         
@@ -98,7 +107,7 @@ extension ViewController: NSCollectionViewDataSource {
         if let imageURL = imageURL {
             imageFile = NSImage(byReferencing: imageURL)
         } else {
-            imageFile = NSImage(named: "album.png")!
+            imageFile = NSImage(named: "defaultAlbum.png")!
         }
         
         collectionViewItem.imageFile = imageFile
