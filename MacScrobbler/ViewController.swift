@@ -22,6 +22,7 @@ class ViewController: NSViewController {
     var albumLimit = 50
     
     var albumsArray = [Album]()
+    var albumImagesArray = [NSImage]()
     
     @IBOutlet weak var collectionView: NSCollectionView!
     @IBOutlet var usernameTextField: NSTextField!
@@ -31,6 +32,7 @@ class ViewController: NSViewController {
         
         username = usernameTextField.stringValue
         albumLimit = Int(nrOfAlbumsTextField.stringValue) ?? 50
+        albumImagesArray.removeAll()
         albumsArray.removeAll()
         getJSON()
     }
@@ -74,15 +76,24 @@ class ViewController: NSViewController {
 //                    print(json["topalbums"]["album"][i]["playcount"])
                     
                     
-                    let album = Album(name: JSONAlbumRef["name"].stringValue, artist: JSONAlbumRef["artist"]["name"].stringValue, coverURL: JSONAlbumRef["image"][3]["#text"].stringValue, playCount: JSONAlbumRef["playcount"].intValue)
+                    let album = Album(name: JSONAlbumRef["name"].stringValue, artist: JSONAlbumRef["artist"]["name"].stringValue, coverURL: JSONAlbumRef["image"][2]["#text"].stringValue, playCount: JSONAlbumRef["playcount"].intValue)
                     self.albumsArray.append(album)
+                    
+                    // If album cover URL is missing, display the default one
+                    if JSONAlbumRef["image"][2]["#text"].stringValue == "" {
+                        self.albumImagesArray.append(NSImage(named: "defaultAlbum.png")!)
+                    } else {
+                        self.albumImagesArray.append(NSImage(byReferencing: URL(string: JSONAlbumRef["image"][2]["#text"].stringValue)!))
+                    }
+                    
                 }
                 
             }
             
             DispatchQueue.main.async {
+                print("DEBUG: Finished building albumsArray, updating data now...")
                 self.collectionView.reloadData()
-                print("DEBUG: Finished building albumsArray.")
+                print("DEBUG: Data updated.")
             }
         }.resume()
         
@@ -101,16 +112,7 @@ extension ViewController: NSCollectionViewDataSource {
         let item = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "CollectionViewItem"), for: indexPath)
         guard let collectionViewItem = item as? CollectionViewItem else {return item}
         
-        let imageURL = URL(string: albumsArray[indexPath.item].coverURL)
-        var imageFile = NSImage()
-        
-        if let imageURL = imageURL {
-            imageFile = NSImage(byReferencing: imageURL)
-        } else {
-            imageFile = NSImage(named: "defaultAlbum.png")!
-        }
-        
-        collectionViewItem.imageFile = imageFile
+        collectionViewItem.imageFile = albumImagesArray[indexPath.item]
         
         return item
     }
