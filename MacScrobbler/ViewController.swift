@@ -20,6 +20,7 @@ class ViewController: NSViewController {
     let apiKey = "REPLACE_ME"
     var username = "renehaavre"
     var albumLimit = 50
+    var isUpdating = false
     
     var albumsArray = [Album]()
     var albumImagesArray = [NSImage]()
@@ -58,6 +59,7 @@ class ViewController: NSViewController {
 
     func getJSON() {
         
+        isUpdating = true
         guard let url = URL(string: "http://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user=" + username + "&api_key=" + apiKey + "&format=json&limit=" + String(albumLimit)) else { return }
         print(url)
         let session = URLSession.shared
@@ -94,14 +96,16 @@ class ViewController: NSViewController {
                 print("DEBUG: Finished building albumsArray, updating data now...")
                 self.collectionView.reloadData()
                 print("DEBUG: Data updated.")
+                self.isUpdating = false
             }
         }.resume()
         
     }
 
+
 }
 
-extension ViewController: NSCollectionViewDataSource {
+extension ViewController: NSCollectionViewDataSource, NSCollectionViewDelegate {
     
     func collectionView(_ collectionView: NSCollectionView, numberOfItemsInSection section: Int) -> Int {
         return albumsArray.count
