@@ -782,6 +782,15 @@
                             </textField>
                             <customView wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YYk-0e-Vkt">
                                 <rect key="frame" x="0.0" y="0.0" width="480" height="229"/>
+                                <subviews>
+                                    <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" bezeled="NO" indeterminate="YES" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="0Nf-fz-GB3">
+                                        <rect key="frame" x="224" y="99" width="32" height="32"/>
+                                    </progressIndicator>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="0Nf-fz-GB3" firstAttribute="centerX" secondItem="YYk-0e-Vkt" secondAttribute="centerX" id="TvU-ta-ugf"/>
+                                    <constraint firstItem="0Nf-fz-GB3" firstAttribute="centerY" secondItem="YYk-0e-Vkt" secondAttribute="centerY" id="wVe-pp-eqi"/>
+                                </constraints>
                             </customView>
                         </subviews>
                         <constraints>
@@ -807,6 +816,7 @@
                         <outlet property="collectionView" destination="UZi-Kg-zUP" id="vlD-y9-47M"/>
                         <outlet property="loadingView" destination="YYk-0e-Vkt" id="s9q-1d-iLl"/>
                         <outlet property="nrOfAlbumsTextField" destination="7Ru-6r-kCk" id="hq0-hs-UwH"/>
+                        <outlet property="spinnerIndicator" destination="0Nf-fz-GB3" id="suG-cL-rJ8"/>
                         <outlet property="usernameTextField" destination="pNZ-89-EWR" id="wg9-Rh-3Fe"/>
                     </connections>
                 </viewController>

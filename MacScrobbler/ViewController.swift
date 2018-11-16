@@ -24,9 +24,11 @@ class ViewController: NSViewController {
         didSet {
             if isUpdating {
                 loadingView.layer?.backgroundColor = NSColor.init(red: 0, green: 0, blue: 0, alpha: 0.8).cgColor
+                spinnerIndicator.startAnimation(self)
             }
             else {
                 loadingView.layer?.backgroundColor = NSColor.clear.cgColor
+                spinnerIndicator.stopAnimation(self)
 
             }
         }
@@ -35,6 +37,7 @@ class ViewController: NSViewController {
     var albumsArray = [Album]()
     var albumImagesArray = [NSImage]()
     
+    @IBOutlet var spinnerIndicator: NSProgressIndicator!
     @IBOutlet var loadingView: NSView!
     @IBOutlet weak var collectionView: NSCollectionView!
     @IBOutlet var usernameTextField: NSTextField!
@@ -52,6 +55,7 @@ class ViewController: NSViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        spinnerIndicator.isDisplayedWhenStopped = false
 
         collectionView.register(NSNib(nibNamed: "CollectionViewItem", bundle: nil)!, forItemWithIdentifier: NSUserInterfaceItemIdentifier(rawValue: "CollectionViewItem"))
         
