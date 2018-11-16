@@ -780,24 +780,32 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <customView wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YYk-0e-Vkt">
+                                <rect key="frame" x="0.0" y="0.0" width="480" height="229"/>
+                            </customView>
                         </subviews>
                         <constraints>
                             <constraint firstItem="IRw-Kp-6fY" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="41" id="4BV-1O-i1n"/>
                             <constraint firstItem="IRw-Kp-6fY" firstAttribute="top" secondItem="tXA-uL-rKL" secondAttribute="bottom" constant="12" id="B8U-kh-Pmm"/>
+                            <constraint firstAttribute="trailing" secondItem="YYk-0e-Vkt" secondAttribute="trailing" id="F9z-1X-nKQ"/>
                             <constraint firstItem="7Ru-6r-kCk" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="8" id="Hmb-rz-la4"/>
                             <constraint firstItem="IRw-Kp-6fY" firstAttribute="top" secondItem="pNZ-89-EWR" secondAttribute="bottom" constant="11" id="JHh-ZQ-RsV"/>
                             <constraint firstAttribute="trailing" secondItem="IRw-Kp-6fY" secondAttribute="trailing" constant="10" id="Qxa-r2-wzQ"/>
                             <constraint firstItem="7Ru-6r-kCk" firstAttribute="leading" secondItem="pNZ-89-EWR" secondAttribute="trailing" constant="8" id="Sod-wH-QVR"/>
+                            <constraint firstItem="YYk-0e-Vkt" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="W1T-mS-kc1"/>
                             <constraint firstItem="pNZ-89-EWR" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="10" id="fIZ-SD-v8z"/>
+                            <constraint firstAttribute="bottom" secondItem="YYk-0e-Vkt" secondAttribute="bottom" id="g07-et-Pg9"/>
                             <constraint firstItem="pNZ-89-EWR" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="8" id="i21-El-8a5"/>
                             <constraint firstAttribute="bottom" secondItem="IRw-Kp-6fY" secondAttribute="bottom" constant="10" id="llS-lz-2ME"/>
                             <constraint firstItem="IRw-Kp-6fY" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="10" id="nHA-BW-lRd"/>
                             <constraint firstItem="tXA-uL-rKL" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="8" id="sco-nm-sYA"/>
+                            <constraint firstItem="YYk-0e-Vkt" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="41" id="wi2-Ay-nfX"/>
                             <constraint firstAttribute="trailing" secondItem="tXA-uL-rKL" secondAttribute="trailing" constant="10" id="yOJ-6g-xIR"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="UZi-Kg-zUP" id="vlD-y9-47M"/>
+                        <outlet property="loadingView" destination="YYk-0e-Vkt" id="s9q-1d-iLl"/>
                         <outlet property="nrOfAlbumsTextField" destination="7Ru-6r-kCk" id="hq0-hs-UwH"/>
                         <outlet property="usernameTextField" destination="pNZ-89-EWR" id="wg9-Rh-3Fe"/>
                     </connections>

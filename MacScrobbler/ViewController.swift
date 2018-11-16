@@ -20,11 +20,22 @@ class ViewController: NSViewController {
     let apiKey = "REPLACE_ME"
     var username = "renehaavre"
     var albumLimit = 50
-    var isUpdating = false
+    var isUpdating = false {
+        didSet {
+            if isUpdating {
+                loadingView.layer?.backgroundColor = NSColor.init(red: 0, green: 0, blue: 0, alpha: 0.8).cgColor
+            }
+            else {
+                loadingView.layer?.backgroundColor = NSColor.clear.cgColor
+
+            }
+        }
+    }
     
     var albumsArray = [Album]()
     var albumImagesArray = [NSImage]()
     
+    @IBOutlet var loadingView: NSView!
     @IBOutlet weak var collectionView: NSCollectionView!
     @IBOutlet var usernameTextField: NSTextField!
     @IBOutlet var nrOfAlbumsTextField: NSTextField!
