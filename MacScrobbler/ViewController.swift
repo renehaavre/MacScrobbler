@@ -19,7 +19,7 @@ class ViewController: NSViewController {
 
     let apiKey = "REPLACE_ME"
     var username = "renehaavre"
-    var albumLimit = 50
+    var albumLimit = 150
     var isUpdating = false {
         didSet {
             if isUpdating {
@@ -55,7 +55,8 @@ class ViewController: NSViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        spinnerIndicator.isDisplayedWhenStopped = false
+        spinnerIndicator.isIndeterminate = false
+        spinnerIndicator.style = .spinning
 
         collectionView.register(NSNib(nibNamed: "CollectionViewItem", bundle: nil)!, forItemWithIdentifier: NSUserInterfaceItemIdentifier(rawValue: "CollectionViewItem"))
         
@@ -75,6 +76,8 @@ class ViewController: NSViewController {
     func getJSON() {
         
         isUpdating = true
+        spinnerIndicator.isHidden = false
+        spinnerIndicator.maxValue = Double(self.albumLimit)
         guard let url = URL(string: "http://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user=" + username + "&api_key=" + apiKey + "&format=json&limit=" + String(albumLimit)) else { return }
         print(url)
         let session = URLSession.shared
@@ -86,12 +89,15 @@ class ViewController: NSViewController {
                 print("DEBUG: We have the JSON, building albumsArray with \(self.albumLimit) items.")
                 
                 for i in 0..<self.albumLimit {
+                    DispatchQueue.main.async {
+                        self.spinnerIndicator.doubleValue = Double(i)
+                        print("Progress:", Double(i))
+                        if i == (self.albumLimit - 1) {
+                            self.spinnerIndicator.isHidden = true
+                        }
+                    }
+                    
                     let JSONAlbumRef = json["topalbums"]["album"][i]
-                    
-//                    print(json["topalbums"]["album"][i]["name"])
-//                    print(json["topalbums"]["album"][i]["image"][3]["#text"])
-//                    print(json["topalbums"]["album"][i]["playcount"])
-                    
                     
                     let album = Album(name: JSONAlbumRef["name"].stringValue, artist: JSONAlbumRef["artist"]["name"].stringValue, coverURL: JSONAlbumRef["image"][2]["#text"].stringValue, playCount: JSONAlbumRef["playcount"].intValue)
                     self.albumsArray.append(album)
