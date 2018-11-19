@@ -18,8 +18,8 @@ struct Album {
 class ViewController: NSViewController {
 
     let apiKey = "REPLACE_ME"
-    var username = "renehaavre"
-    var albumLimit = 150
+    var username = ""
+    var albumLimit = 50
     var isUpdating = false {
         didSet {
             if isUpdating {
@@ -41,12 +41,14 @@ class ViewController: NSViewController {
     @IBOutlet var loadingView: NSView!
     @IBOutlet weak var collectionView: NSCollectionView!
     @IBOutlet var usernameTextField: NSTextField!
-    @IBOutlet var nrOfAlbumsTextField: NSTextField!
+    
+    @IBAction func albumCountSelectedAction(_ sender: NSSegmentedControl) {
+        albumLimit = Int(sender.label(forSegment: sender.selectedSegment)!) ?? 50
+        getJSON()
+    }
     
     @IBAction func reloadAction(_ sender: NSButton) {
         
-        username = usernameTextField.stringValue
-        albumLimit = Int(nrOfAlbumsTextField.stringValue) ?? 50
         albumImagesArray.removeAll()
         albumsArray.removeAll()
         getJSON()
@@ -78,6 +80,9 @@ class ViewController: NSViewController {
         isUpdating = true
         spinnerIndicator.isHidden = false
         spinnerIndicator.maxValue = Double(self.albumLimit)
+        
+        username = usernameTextField.stringValue
+
         guard let url = URL(string: "http://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user=" + username + "&api_key=" + apiKey + "&format=json&limit=" + String(albumLimit)) else { return }
         print(url)
         let session = URLSession.shared
