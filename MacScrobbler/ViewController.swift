@@ -17,7 +17,7 @@ struct Album {
 
 class ViewController: NSViewController {
 
-    let apiKey = "1cbe7dcfc37f6853a7c24dae8dc69290"
+    let apiKey = "REPLACE_ME"
     var username = "renehaavre"
     var albumLimit = 50
     var isShowingAlbumInfo = false
@@ -73,7 +73,6 @@ class ViewController: NSViewController {
         flowLayout.itemSize = NSSize(width: 120.0, height: 120.0)
         collectionView.collectionViewLayout = flowLayout
 
-        view.wantsLayer = true
     }
 
     func getJSON() {
@@ -105,7 +104,7 @@ class ViewController: NSViewController {
                     
                     let JSONAlbumRef = json["topalbums"]["album"][i]
                     
-                    let album = Album(name: JSONAlbumRef["name"].stringValue, artist: JSONAlbumRef["artist"]["name"].stringValue, coverURL: JSONAlbumRef["image"][2]["#text"].stringValue, playCount: JSONAlbumRef["playcount"].intValue)
+                    let album = Album(name: JSONAlbumRef["name"].stringValue, artist: JSONAlbumRef["artist"]["name"].stringValue, coverURL: JSONAlbumRef["image"][3]["#text"].stringValue, playCount: JSONAlbumRef["playcount"].intValue)
                     self.albumsArray.append(album)
                     
                     // If album cover URL is missing, display the default one
@@ -133,7 +132,6 @@ class ViewController: NSViewController {
         
         if isShowingAlbumInfo { return } // prevent re-entry if view is already visible
         
-        print("Showing album info for position \(atPosition)")
         let albumView = NSView(frame: self.view.bounds)
         albumView.wantsLayer = true
         albumView.layer?.backgroundColor = NSColor(calibratedRed: 0, green: 0, blue: 0, alpha: 0.9).cgColor
@@ -159,6 +157,17 @@ class ViewController: NSViewController {
         label.topAnchor.constraint(equalTo: albumView.topAnchor, constant: 30).isActive = true
         label.leadingAnchor.constraint(greaterThanOrEqualTo: albumView.leadingAnchor, constant: 40).isActive = true
         label.trailingAnchor.constraint(greaterThanOrEqualTo: albumView.trailingAnchor, constant: -40).isActive = true
+        
+        // Setup album art
+        let imageURL = URL(string: albumsArray[atPosition].coverURL)
+        let albumArt = NSImage(byReferencing: imageURL!)
+        let albumArtView = NSImageView(image: albumArt)
+        view.addSubview(albumArtView)
+        
+        albumArtView.translatesAutoresizingMaskIntoConstraints = false
+        albumArtView.topAnchor.constraint(greaterThanOrEqualTo: view.topAnchor, constant: 80).isActive = true
+        albumArtView.leadingAnchor.constraint(greaterThanOrEqualTo: view.leadingAnchor, constant: 40).isActive = true
+//        albumArtView.trailingAnchor.constraint(greaterThanOrEqualTo: view.trailingAnchor, constant: -40).isActive = true
         
         isShowingAlbumInfo = true
     }
