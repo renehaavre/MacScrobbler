@@ -21,10 +21,19 @@ class CollectionViewItem: NSCollectionViewItem {
         }
     }
     
+    @IBAction func imageViewAction(_ sender: NSImageView) {
+        performSegue(withIdentifier: "detailSegue", sender: self)
+        print("Album clicked")
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         view.wantsLayer = true
         view.layer?.backgroundColor = NSColor.lightGray.cgColor
+    }
+    
+    override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
+        let destVC = segue.destinationController as! DetailViewController
+        
     }
     
 }

@@ -17,9 +17,10 @@ struct Album {
 
 class ViewController: NSViewController {
 
-    let apiKey = "REPLACE_ME"
-    var username = ""
+    let apiKey = "1cbe7dcfc37f6853a7c24dae8dc69290"
+    var username = "renehaavre"
     var albumLimit = 50
+    var isShowingAlbumInfo = false
     var isUpdating = false {
         didSet {
             if isUpdating {
@@ -127,6 +128,41 @@ class ViewController: NSViewController {
         }.resume()
         
     }
+    
+    func showAlbumInfo(atPosition: Int) {
+        
+        if isShowingAlbumInfo { return } // prevent re-entry if view is already visible
+        
+        print("Showing album info for position \(atPosition)")
+        let albumView = NSView(frame: self.view.bounds)
+        albumView.wantsLayer = true
+        albumView.layer?.backgroundColor = NSColor(calibratedRed: 0, green: 0, blue: 0, alpha: 0.9).cgColor
+        
+        self.view.addSubview(albumView)
+        
+        // Constraints
+        albumView.translatesAutoresizingMaskIntoConstraints = false
+        albumView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
+        albumView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+        albumView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
+        albumView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
+        
+        // Setup label
+        let label = NSTextField(frame: CGRect(x: 0, y: 0, width: 300, height: 50))
+        label.stringValue = albumsArray[atPosition].name
+        label.font = NSFont(name: "Helvetica Neue Light", size: 30)
+        label.alignment = .center
+        label.backgroundColor = NSColor.clear
+        albumView.addSubview(label)
+        
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.topAnchor.constraint(equalTo: albumView.topAnchor, constant: 30).isActive = true
+        label.leadingAnchor.constraint(greaterThanOrEqualTo: albumView.leadingAnchor, constant: 40).isActive = true
+        label.trailingAnchor.constraint(greaterThanOrEqualTo: albumView.trailingAnchor, constant: -40).isActive = true
+        
+        isShowingAlbumInfo = true
+    }
+
 
 
 }
@@ -145,6 +181,11 @@ extension ViewController: NSCollectionViewDataSource, NSCollectionViewDelegate {
         collectionViewItem.imageFile = albumImagesArray[indexPath.item]
         
         return item
+    }
+    
+    func collectionView(_ collectionView: NSCollectionView, didSelectItemsAt indexPaths: Set<IndexPath>) {
+//        performSegue(withIdentifier: "detailSegue", sender: self)
+        showAlbumInfo(atPosition: (indexPaths.first?.item)!)
     }
     
     

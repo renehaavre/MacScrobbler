@@ -759,7 +759,7 @@
                                     <constraint firstAttribute="width" constant="120" id="AzU-11-eQ8"/>
                                     <constraint firstAttribute="height" constant="22" id="QTa-bQ-X5A"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="Username" bezelStyle="round" id="yvn-OX-F24">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" title="renehaavre" placeholderString="Username" bezelStyle="round" id="yvn-OX-F24">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -845,11 +845,39 @@
                         <outlet property="nrOfAlbums" destination="I68-In-GjO" id="Y78-za-zQR"/>
                         <outlet property="spinnerIndicator" destination="0Nf-fz-GB3" id="suG-cL-rJ8"/>
                         <outlet property="usernameTextField" destination="pNZ-89-EWR" id="wg9-Rh-3Fe"/>
+                        <segue destination="JRC-ru-CEZ" kind="sheet" identifier="detailSegue" id="Kvr-4I-tgd"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="105" y="873"/>
+            <point key="canvasLocation" x="75" y="874"/>
+        </scene>
+        <!--DetailView-->
+        <scene sceneID="ihd-Hg-cEE">
+            <objects>
+                <viewController title="DetailView" showSeguePresentationStyle="single" id="JRC-ru-CEZ" customClass="DetailViewController" customModule="MacScrobbler" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="mkk-h2-aCg">
+                        <rect key="frame" x="0.0" y="0.0" width="483" height="274"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="VsQ-0R-A0f">
+                                <rect key="frame" x="92" y="117" width="300" height="41"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="DetailViewController" id="TLT-Op-er7">
+                                    <font key="font" size="34" name="HelveticaNeue-Light"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="VsQ-0R-A0f" firstAttribute="centerX" secondItem="mkk-h2-aCg" secondAttribute="centerX" id="d9r-fs-BnB"/>
+                            <constraint firstItem="VsQ-0R-A0f" firstAttribute="centerY" secondItem="mkk-h2-aCg" secondAttribute="centerY" id="fNh-Aj-K1t"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <customObject id="3YP-re-xwV" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="830.5" y="876"/>
         </scene>
     </scenes>
 </document>

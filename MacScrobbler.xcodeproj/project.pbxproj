@@ -15,6 +15,7 @@
 		9488E9882192406C007E52DA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9488E9862192406C007E52DA /* Main.storyboard */; };
 		9488E99221924199007E52DA /* CollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9488E99021924199007E52DA /* CollectionViewItem.swift */; };
 		9488E99321924199007E52DA /* CollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9488E99121924199007E52DA /* CollectionViewItem.xib */; };
+		949FC52621A9FA5600148937 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949FC52521A9FA5600148937 /* DetailViewController.swift */; };
 		94EC0C852194C72F00360747 /* defaultAlbum.png in Resources */ = {isa = PBXBuildFile; fileRef = 94EC0C842194C72F00360747 /* defaultAlbum.png */; };
 		94EC0C872194C73C00360747 /* album.png in Resources */ = {isa = PBXBuildFile; fileRef = 94EC0C862194C73C00360747 /* album.png */; };
 /* End PBXBuildFile section */
@@ -31,6 +32,7 @@
 		9488E98A2192406C007E52DA /* MacScrobbler.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MacScrobbler.entitlements; sourceTree = "<group>"; };
 		9488E99021924199007E52DA /* CollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewItem.swift; sourceTree = "<group>"; };
 		9488E99121924199007E52DA /* CollectionViewItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionViewItem.xib; sourceTree = "<group>"; };
+		949FC52521A9FA5600148937 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		94EC0C842194C72F00360747 /* defaultAlbum.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = defaultAlbum.png; sourceTree = "<group>"; };
 		94EC0C862194C73C00360747 /* album.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = album.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -69,9 +71,10 @@
 				9488E9802192406B007E52DA /* AppDelegate.swift */,
 				9488E9822192406B007E52DA /* ViewController.swift */,
 				9488E99021924199007E52DA /* CollectionViewItem.swift */,
+				9488E9862192406C007E52DA /* Main.storyboard */,
 				9488E99121924199007E52DA /* CollectionViewItem.xib */,
 				9488E9842192406C007E52DA /* Assets.xcassets */,
-				9488E9862192406C007E52DA /* Main.storyboard */,
+				949FC52521A9FA5600148937 /* DetailViewController.swift */,
 				9488E9892192406C007E52DA /* Info.plist */,
 				9488E98A2192406C007E52DA /* MacScrobbler.entitlements */,
 				94670F2821986E6B00CD7473 /* SwiftyJSON.swift */,
@@ -165,6 +168,7 @@
 				9488E9832192406B007E52DA /* ViewController.swift in Sources */,
 				94670F2B219894D900CD7473 /* WindowController.swift in Sources */,
 				9488E9812192406B007E52DA /* AppDelegate.swift in Sources */,
+				949FC52621A9FA5600148937 /* DetailViewController.swift in Sources */,
 				9488E99221924199007E52DA /* CollectionViewItem.swift in Sources */,
 				94670F2921986E6B00CD7473 /* SwiftyJSON.swift in Sources */,
 			);
