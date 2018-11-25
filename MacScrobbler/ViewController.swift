@@ -37,6 +37,7 @@ class ViewController: NSViewController {
     
     var albumsArray = [Album]()
     var albumImagesArray = [NSImage]()
+    var albumView = NSView()
     
     @IBOutlet var spinnerIndicator: NSProgressIndicator!
     @IBOutlet var loadingView: NSView!
@@ -58,6 +59,11 @@ class ViewController: NSViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        NSEvent.addLocalMonitorForEvents(matching: .keyDown) { (event) -> NSEvent? in
+            self.keyDown(with: event)
+            return nil
+        }
         spinnerIndicator.isIndeterminate = false
         spinnerIndicator.style = .spinning
 
@@ -132,7 +138,7 @@ class ViewController: NSViewController {
         
         if isShowingAlbumInfo { return } // prevent re-entry if view is already visible
         
-        let albumView = NSView(frame: self.view.bounds)
+        albumView = NSView(frame: self.view.bounds)
         albumView.wantsLayer = true
         albumView.layer?.backgroundColor = NSColor(calibratedRed: 0, green: 0, blue: 0, alpha: 0.9).cgColor
         
@@ -162,7 +168,7 @@ class ViewController: NSViewController {
         let imageURL = URL(string: albumsArray[atPosition].coverURL)
         let albumArt = NSImage(byReferencing: imageURL!)
         let albumArtView = NSImageView(image: albumArt)
-        view.addSubview(albumArtView)
+        albumView.addSubview(albumArtView)
         
         albumArtView.translatesAutoresizingMaskIntoConstraints = false
         albumArtView.topAnchor.constraint(greaterThanOrEqualTo: view.topAnchor, constant: 100).isActive = true
@@ -170,8 +176,22 @@ class ViewController: NSViewController {
 
         isShowingAlbumInfo = true
     }
-
-
+    
+    override func viewDidAppear() {
+        view.window?.makeFirstResponder(self)
+    }
+    
+    override func keyDown(with event: NSEvent) {
+        print(event)
+        if isShowingAlbumInfo {
+            if event.keyCode == 53 { // keyCode 53 == Esc
+                albumView.subviews.removeAll()
+                self.albumView.removeFromSuperview()
+                
+                isShowingAlbumInfo = false
+            }
+        }
+    }
 
 }
 
@@ -192,7 +212,6 @@ extension ViewController: NSCollectionViewDataSource, NSCollectionViewDelegate {
     }
     
     func collectionView(_ collectionView: NSCollectionView, didSelectItemsAt indexPaths: Set<IndexPath>) {
-//        performSegue(withIdentifier: "detailSegue", sender: self)
         showAlbumInfo(atPosition: (indexPaths.first?.item)!)
     }
     
