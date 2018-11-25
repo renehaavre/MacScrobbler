@@ -165,10 +165,9 @@ class ViewController: NSViewController {
         view.addSubview(albumArtView)
         
         albumArtView.translatesAutoresizingMaskIntoConstraints = false
-        albumArtView.topAnchor.constraint(greaterThanOrEqualTo: view.topAnchor, constant: 80).isActive = true
-        albumArtView.leadingAnchor.constraint(greaterThanOrEqualTo: view.leadingAnchor, constant: 40).isActive = true
-//        albumArtView.trailingAnchor.constraint(greaterThanOrEqualTo: view.trailingAnchor, constant: -40).isActive = true
-        
+        albumArtView.topAnchor.constraint(greaterThanOrEqualTo: view.topAnchor, constant: 100).isActive = true
+        albumArtView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+
         isShowingAlbumInfo = true
     }
 
