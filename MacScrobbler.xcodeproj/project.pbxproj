@@ -17,7 +17,6 @@
 		9488E99321924199007E52DA /* CollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9488E99121924199007E52DA /* CollectionViewItem.xib */; };
 		949FC52621A9FA5600148937 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949FC52521A9FA5600148937 /* DetailViewController.swift */; };
 		94EC0C852194C72F00360747 /* defaultAlbum.png in Resources */ = {isa = PBXBuildFile; fileRef = 94EC0C842194C72F00360747 /* defaultAlbum.png */; };
-		94EC0C872194C73C00360747 /* album.png in Resources */ = {isa = PBXBuildFile; fileRef = 94EC0C862194C73C00360747 /* album.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,7 +33,6 @@
 		9488E99121924199007E52DA /* CollectionViewItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionViewItem.xib; sourceTree = "<group>"; };
 		949FC52521A9FA5600148937 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		94EC0C842194C72F00360747 /* defaultAlbum.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = defaultAlbum.png; sourceTree = "<group>"; };
-		94EC0C862194C73C00360747 /* album.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = album.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,7 +84,6 @@
 		94EC0C832194C71A00360747 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				94EC0C862194C73C00360747 /* album.png */,
 				94EC0C842194C72F00360747 /* defaultAlbum.png */,
 			);
 			path = Images;
@@ -154,7 +151,6 @@
 				94EC0C852194C72F00360747 /* defaultAlbum.png in Resources */,
 				9488E9882192406C007E52DA /* Main.storyboard in Resources */,
 				9488E99321924199007E52DA /* CollectionViewItem.xib in Resources */,
-				94EC0C872194C73C00360747 /* album.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

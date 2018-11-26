@@ -806,8 +806,8 @@
                                     <font key="font" metaFont="system"/>
                                     <segments>
                                         <segment label="50" width="42" selected="YES"/>
-                                        <segment label="100" width="42" tag="1"/>
-                                        <segment label="250" width="42"/>
+                                        <segment label="250" width="42" tag="1"/>
+                                        <segment label="500" width="42"/>
                                     </segments>
                                 </segmentedCell>
                                 <connections>
